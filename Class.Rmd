@@ -1,0 +1,100 @@
+---
+title       : SS 4853
+framework   : revealjs
+highlighter : highlight.js
+hitheme     : default 
+widgets     : []
+mode        : selfcontained
+knit        : slidify::knit2slides
+---
+
+## SS 4853  
+
+**Sampling Theory and Methods**
+
+<br><br>
+
+Fang He
+
+Jan 5 2016
+
+---
+
+![alt text](YRBS.png)
+
+
+---
+
+## Overview
+
+![alt text](Intro.png)
+
+---
+
+## Goal
+
+![alt text](Goal.png)
+
+---
+
+## Mission 
+
+<br><br>
+
+Using **linear regression** find the variables in the data file 
+
+that best explain the variation in **BMI**. 
+
+<br><br>
+
+Make appropriate plots of the data.
+
+---
+
+## BTW
+
+Why/When we should use linear regression?
+
+---
+
+## Let's have a look at all the questions
+
+<br><br>
+
+Since there are over 80 questions,
+
+we are going to do a simple grouping.
+
+---
+
+## Let's have a look at our dataset
+
+<br><br>
+
+(P.S. Don't forget our mission.)
+
+---
+
+## Group discuss time
+
+<br><br>
+
+(find potential independent variables)
+
+---
+
+## Modeling
+
+---
+
+## Conclusion
+
+---
+
+
+
+
+
+
+
+

@@ -1,0 +1,123 @@
+---
+title: "SS4853"
+author: "Fang He"
+date: "December 8, 2015"
+output: pdf_document
+---
+
+
+### Notes from my time (2012)
+
+
+Use the data file from the 2011 Youth Risk Behavior Survey. Calculate two new variables from the dataset: 
+
+* body mass index (BMI), which is a preson's weight in kilograms divided by their height in meters squared.
+
+* age of the student (it is a coded value in the data file).
+
+<br>
+
+1. Using linear regression find the variables in the data file that best explain the variation in BMI. Make appropriate plots of the data.
+
+In answering this question, you should research information about BMI and its correlates. To get you started, here is one article that will be of interest.
+
+T.Ostbye, J.Pomerlau, M.Speechley, L.L. Pederson and K.L. Speechle (1995). Correlates of body mass index in the 1990 Ontario Health Survey. *Canadian Medical Association Journal* **152** (11): 1811 -- 1817
+
+
+
+2. Using logistic regression find the variables in the data file that best explain the proportion of students who have contemplated suicide. Make appropriate plots of the data.
+
+In answering this question, you should research information about teen suicide and its correlates. To get you started, here is one article that will be of interest.
+
+M.H. Swahn and R.M. Bossarte (2007). Gender, early alcohol use, and suicide ideation and attempts: findings from the 2005 Youth Risk Behavior Survey. *Journal of Adolescent Health* **41** (2): 175 -- 181
+
+
+
+### First Class
+
+What effects BMI? (Do test)
+
+Test whether sex is significant. 
+
+Add random effect in the same model to see how p-value of sex change.
+
+
+### Second Class
+
+Do logistic regression on suicide data.
+
+
+## Details
+
+```{r}
+yrbs <- read.table("/Users/fhe7/Documents/School/Sampling/yrbs2013.txt",header=TRUE)
+head(yrbs)
+
+colnames(yrbs[,c(2,3,7,8)]) <- c("age","sex","height","weight")
+attach(yrbs)
+
+bmi <- q7/q6^2
+```
+
+```{r}
+hist(bmi,prob=TRUE)
+lines(density(bmi,na.rm = T),col=2,lwd=1.5)
+```
+
+### Linear Regression
+
+Q: Why we use linear regression?
+
+```{r}
+plot(bmi~factor(q1))
+plot(bmi~factor(q2))
+```
+
+
+```{r}
+mod0 <- lm(bmi ~ factor(q1)+factor(q2),data=yrbs)
+summary(mod0)
+```
+
+age - young did not affect much of BMI
+
+gender - different
+
+
+```{r}
+mod1 <- update(mod0,.~.-factor(q1))
+## or mod1 <- lm(bmi ~ factor(q2),data=yrbs)
+summary(mod1)
+```
+
+```{r}
+anova(mod1,mod0)
+```
+
+### Consider random effect
+
+```{r results='hide',message=FALSE}
+library(lme4)
+```
+
+```{r}
+mod0_lmer <- lmer(bmi ~ q2 + factor(stratum) + (1|psu),data=yrbs)
+summary(mod0_lmer)
+```
+
+
+Final Project - survey design - modeling with random effect - see the difference 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
